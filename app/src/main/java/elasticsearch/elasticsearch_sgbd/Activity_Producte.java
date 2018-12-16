@@ -61,18 +61,18 @@ public class Activity_Producte extends AppCompatActivity {
         TextView nom = (TextView) findViewById(R.id.producte_nom);
         nom.setText(dades.nom);
         TextView preu = (TextView) findViewById(R.id.producte_preu);
-        preu.setText(Float.toString(dades.preu));
+        preu.setText(Float.toString(dades.preu)+"e");
         TextView preuenviament = (TextView) findViewById(R.id.producte_preuEnviament);
         if(dades.preuEnviament == 0) preuenviament.setText("Gratuït");
-        else preuenviament.setText(Float.toString(dades.preuEnviament));
+        else preuenviament.setText(Float.toString(dades.preuEnviament)+"e");
         TextView condicions = (TextView) findViewById(R.id.producte_condicions);
-        condicions.setText(dades.condicions);
+        condicions.setText("Condicions: "+dades.condicions);
         TextView disponibilitat = (TextView) findViewById(R.id.producte_disponibilitat);
-        disponibilitat.setText(dades.disponibilitat);
+        disponibilitat.setText("Stock: "+dades.disponibilitat);
         TextView fabricant = (TextView) findViewById(R.id.producte_fabricant);
-        fabricant.setText(dades.fabricant);
+        fabricant.setText("Fabricant: "+dades.fabricant);
         TextView marca = (TextView) findViewById(R.id.producte_marca);
-        marca.setText(dades.marca);
+        marca.setText("Marca: "+dades.marca);
         TextView data = (TextView) findViewById(R.id.producte_dataInsercio);
         data.setText(dades.dataInsercio);
     }

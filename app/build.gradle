@@ -18,7 +18,6 @@ android {
         }
     }
     packagingOptions {
-        // TODO Aixo no s'hauria de fer, preguntar al nacho que fem.
         exclude 'META-INF/DEPENDENCIES.txt'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'

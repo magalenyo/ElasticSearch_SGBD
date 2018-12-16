@@ -1,5 +1,6 @@
 package elasticsearch.elasticsearch_sgbd;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,23 +30,48 @@ public class MainActivity extends AppCompatActivity {
     private final int N_ITEMS_ON_LOAD = 5;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mAdapterData = new ArrayList<>();
         app = (ElasticSearchApp) this.getApplication();
         api = app.getAPI();
 
-        setDades();
+        Intent intent = new Intent(this, Activity_Producte.class);
+        intent.putExtra("ID", 1);
+        startActivity(intent);
+
+        setDadesInicials();
+        setHomeScroll();
     }
 
-    public void assignarValors(Persona dades){
-        System.out.println("SOC:" + dades._source.nom);
+    private void setDadesInicials(){
+        Call<List<Producte>> call = api.nproductes(0,10);
+        call.enqueue(new Callback<List<Producte>>() {
+            @Override
+            public void onResponse(Call<List<Producte>> call, Response<List<Producte>> response) {
+                if(response.isSuccessful()){
+                    System.out.println("Success");
+                    for(Producte p : response.body()){
+                        mAdapterData.add(p._source);
+                        recyclerViewAdapter.notifyItemInserted(mAdapterData.size());
+                    }
+                }
+                else{
+                    System.out.println("Not success1");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Producte>> call, Throwable t) {
+                System.out.println("Not success2");
+                System.out.println(t);
+            }
+        });
     }
 
-    public void setDades(){
+    public void setHomeScroll(){
         linearLayoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView = (RecyclerView)findViewById(R.id.RecyclerView_HomeItems);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -67,19 +94,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateAdapterData() {
+        System.out.println("arribo");
         Call<List<Producte>> call = api.nproductes(0,10);
         call.enqueue(new Callback<List<Producte>>() {
             @Override
             public void onResponse(Call<List<Producte>> call, Response<List<Producte>> response) {
-                for(Producte p : response.body()){
-                    mAdapterData.add(p._source);
-                    recyclerViewAdapter.notifyItemInserted(mAdapterData.size());
+                if(response.isSuccessful()){
+                    System.out.println("Success");
+                    for(Producte p : response.body()){
+                        mAdapterData.add(p._source);
+                        recyclerViewAdapter.notifyItemInserted(mAdapterData.size());
+                    }
                 }
-
+                else{
+                    System.out.println("Not success1");
+                }
             }
 
             @Override
             public void onFailure(Call<List<Producte>> call, Throwable t) {
+                System.out.println("Not success2");
+                System.out.println(t);
             }
         });
     }

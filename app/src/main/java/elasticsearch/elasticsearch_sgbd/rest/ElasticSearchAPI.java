@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface ElasticSearchAPI {
 
-    @GET("/Productes/producte/{id}")
+    @GET("/productes/producte/{id}")
     Call<Producte> getProducte(@Path("id") int id);
 
-    @GET("/Productes/producte/_search")
+    @GET("/productes/producte/_search")
     Call<List<Producte>> nproductes(@Query("from") int from, @Query("size") int size);
 
     /*{
