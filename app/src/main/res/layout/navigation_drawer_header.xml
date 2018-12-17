@@ -66,7 +66,7 @@
                   android:layout_height="wrap_content"
                   android:textColor="#e4e4e4"
                   android:textStyle="italic"
-                  android:text="Ferran"
+                  android:text="Ferran Rodriguez"
                   android:layout_marginTop="2dp"
         />
 
