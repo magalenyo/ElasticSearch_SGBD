@@ -18,4 +18,10 @@ public interface ElasticSearchAPI {
         "from": 0,
             "size": 10
     }*/
+    
+    @GET("/categories/categoria/_search")
+    Call<Categories> categories();
+
+    @GET("/categories/categoria/{id}")
+    Call<Categoria> subcategories(@Path("id") String id);
 }
