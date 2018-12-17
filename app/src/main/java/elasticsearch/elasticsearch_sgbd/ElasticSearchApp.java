@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ElasticSearchApp extends Application {
 
     //static String API_BASE_URL = "http://localhost:9200";
-    static String API_BASE_URL = "http://4eb7b660.ngrok.io";
+    static String API_BASE_URL = "http://ea20c50a.ngrok.io";
 
     private ElasticSearchAPI restAPI;
 

@@ -69,7 +69,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
             rvh.ID = item.codi;
             rvh.marca.setText(item.marca);
             rvh.nom.setText(item.nom);
-            rvh.preu.setText(Float.toString(item.preu));
+            rvh.preu.setText(Float.toString(item.preu)+"e");
             Picasso.get().load(item.imageurl).resize(180,180).centerCrop().into(rvh.imageView);
         }
         else{
