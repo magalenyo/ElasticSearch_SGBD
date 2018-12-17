@@ -70,7 +70,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
             rvh.marca.setText(item.marca);
             rvh.nom.setText(item.nom);
             rvh.preu.setText(Float.toString(item.preu));
-            Picasso.get().load(item.imageURL).resize(180,180).centerCrop().into(rvh.imageView);
+            Picasso.get().load(item.imageurl).resize(180,180).centerCrop().into(rvh.imageView);
         }
         else{
             ((ProgressViewHolder)holder).progressBar.setIndeterminate(true);

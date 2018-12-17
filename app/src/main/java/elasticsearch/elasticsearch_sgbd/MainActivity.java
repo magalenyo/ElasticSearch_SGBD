@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import elasticsearch.elasticsearch_sgbd.R;
 import elasticsearch.elasticsearch_sgbd.entity.Persona;
 import elasticsearch.elasticsearch_sgbd.entity.Producte;
+import elasticsearch.elasticsearch_sgbd.entity.Productes;
 import elasticsearch.elasticsearch_sgbd.rest.ElasticSearchAPI;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,16 +42,15 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Activity_Producte.class);
         intent.putExtra("ID", 1);
         startActivity(intent);
-
-        setDadesInicials();
-        setHomeScroll();
+        //setDadesInicials();
+        //setHomeScroll();
     }
 
-    private void setDadesInicials(){
-        Call<List<Producte>> call = api.nproductes(0,10);
-        call.enqueue(new Callback<List<Producte>>() {
+    /*private void setDadesInicials(){
+        Call<List<Productes>> call = api.nproductes(0,10);
+        call.enqueue(new Callback<List<Productes>>() {
             @Override
-            public void onResponse(Call<List<Producte>> call, Response<List<Producte>> response) {
+            public void onResponse(Call<List<Productes>> call, Response<List<Productes>> response) {
                 if(response.isSuccessful()){
                     System.out.println("Success");
                     for(Producte p : response.body()){
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Producte>> call, Throwable t) {
+            public void onFailure(Call<List<Productes>> call, Throwable t) {
                 System.out.println("Not success2");
                 System.out.println(t);
             }
@@ -117,5 +117,5 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(t);
             }
         });
-    }
+    }*/
 }

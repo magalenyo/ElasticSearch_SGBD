@@ -57,14 +57,14 @@ public class Activity_Producte extends AppCompatActivity {
 
     private void assignarValors(ProducteDades dades) {
         ImageView mevaVista = (ImageView) findViewById(R.id.producte_image);
-        Picasso.get().load(dades.imageURL).resize(300,300).centerCrop().into(mevaVista);
+        Picasso.get().load(dades.imageurl).resize(300,300).centerCrop().into(mevaVista);
         TextView nom = (TextView) findViewById(R.id.producte_nom);
         nom.setText(dades.nom);
         TextView preu = (TextView) findViewById(R.id.producte_preu);
         preu.setText(Float.toString(dades.preu)+"e");
         TextView preuenviament = (TextView) findViewById(R.id.producte_preuEnviament);
-        if(dades.preuEnviament == 0) preuenviament.setText("Gratuït");
-        else preuenviament.setText(Float.toString(dades.preuEnviament)+"e");
+        if(dades.preuenviament == 0) preuenviament.setText("Gratuït");
+        else preuenviament.setText(Float.toString(dades.preuenviament)+"e");
         TextView condicions = (TextView) findViewById(R.id.producte_condicions);
         condicions.setText("Condicions: "+dades.condicions);
         TextView disponibilitat = (TextView) findViewById(R.id.producte_disponibilitat);
@@ -74,7 +74,7 @@ public class Activity_Producte extends AppCompatActivity {
         TextView marca = (TextView) findViewById(R.id.producte_marca);
         marca.setText("Marca: "+dades.marca);
         TextView data = (TextView) findViewById(R.id.producte_dataInsercio);
-        data.setText(dades.dataInsercio);
+        data.setText(dades.datainsercio);
     }
 
 }
