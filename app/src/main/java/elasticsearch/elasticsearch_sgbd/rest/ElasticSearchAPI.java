@@ -12,7 +12,7 @@ public interface ElasticSearchAPI {
     Call<Producte> getProducte(@Path("id") int id);
 
     @GET("/productes/producte/_search")
-    Call<List<Productes>> nproductes(@Query("from") int from, @Query("size") int size);
+    Call<Productes> nproductes(@Query("from") int from, @Query("size") int size);
 
     /*{
         "from": 0,

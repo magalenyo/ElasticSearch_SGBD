@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerViewAdapter recyclerViewAdapter;
     private List<Object> mAdapterData;
     private Handler handler;
-    private final int N_ITEMS_ON_LOAD = 5;
+    private final int size = 8;
+    private int from;
 
 
     @Override
@@ -36,24 +37,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAdapterData = new ArrayList<>();
+        handler = new Handler();
         app = (ElasticSearchApp) this.getApplication();
         api = app.getAPI();
+        from = 0;
 
-        Intent intent = new Intent(this, Activity_Producte.class);
-        intent.putExtra("ID", 1);
-        startActivity(intent);
-        //setDadesInicials();
-        //setHomeScroll();
+
+        updateAdapterData();
+        setHomeScroll();
     }
 
-    /*private void setDadesInicials(){
-        Call<List<Productes>> call = api.nproductes(0,10);
-        call.enqueue(new Callback<List<Productes>>() {
+    private void setDadesInicials(){
+        Call<Productes> call = api.nproductes(from,size);
+        call.enqueue(new Callback<Productes>() {
             @Override
-            public void onResponse(Call<List<Productes>> call, Response<List<Productes>> response) {
+            public void onResponse(Call<Productes> call, Response<Productes> response) {
                 if(response.isSuccessful()){
                     System.out.println("Success");
-                    for(Producte p : response.body()){
+
+                    for(Producte p : response.body().hits.hits){
                         mAdapterData.add(p._source);
                         recyclerViewAdapter.notifyItemInserted(mAdapterData.size());
                     }
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Productes>> call, Throwable t) {
+            public void onFailure(Call<Productes> call, Throwable t) {
                 System.out.println("Not success2");
                 System.out.println(t);
             }
@@ -94,14 +96,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateAdapterData() {
-        System.out.println("arribo");
-        Call<List<Producte>> call = api.nproductes(0,10);
-        call.enqueue(new Callback<List<Producte>>() {
+        Call<Productes> call = api.nproductes(from,size);
+        call.enqueue(new Callback<Productes>() {
             @Override
-            public void onResponse(Call<List<Producte>> call, Response<List<Producte>> response) {
+            public void onResponse(Call<Productes> call, Response<Productes> response) {
                 if(response.isSuccessful()){
                     System.out.println("Success");
-                    for(Producte p : response.body()){
+                    for(Producte p : response.body().hits.hits){
                         mAdapterData.add(p._source);
                         recyclerViewAdapter.notifyItemInserted(mAdapterData.size());
                     }
@@ -112,10 +113,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Producte>> call, Throwable t) {
+            public void onFailure(Call<Productes> call, Throwable t) {
                 System.out.println("Not success2");
                 System.out.println(t);
             }
         });
-    }*/
+        from+=8;
+    }
 }

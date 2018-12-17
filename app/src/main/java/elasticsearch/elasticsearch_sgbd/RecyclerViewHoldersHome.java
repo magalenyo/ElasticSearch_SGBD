@@ -18,7 +18,7 @@ public class RecyclerViewHoldersHome extends RecyclerViewHolders implements View
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(context, Producte.class);
+        Intent intent = new Intent(context, Activity_Producte.class);
         intent.putExtra("ID", ID);
         context.startActivity(intent);
     }
