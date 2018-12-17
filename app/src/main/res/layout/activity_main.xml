@@ -20,9 +20,18 @@
                                                   android:layout_height="match_parent"
                                                   android:layout_gravity="start"
                                                   android:id="@+id/navigation_view"
-                                                  app:menu="@menu/menu_drawer"
                                                   app:headerLayout="@layout/navigation_drawer_header"
+                                                  app:menu="@menu/menu_drawer"
     >
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/RecyclerView_NavMenu"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_marginTop="171dp"
+        />
+    </LinearLayout>
 
     </android.support.design.widget.NavigationView>
 
