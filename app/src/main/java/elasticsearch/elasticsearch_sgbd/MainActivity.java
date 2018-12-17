@@ -13,6 +13,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import elasticsearch.elasticsearch_sgbd.entity.Categoria;
+import elasticsearch.elasticsearch_sgbd.entity.Categories;
 import elasticsearch.elasticsearch_sgbd.entity.Producte;
 import elasticsearch.elasticsearch_sgbd.entity.Productes;
 import elasticsearch.elasticsearch_sgbd.rest.ElasticSearchAPI;
@@ -32,7 +34,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private LinearLayoutManager linearLayoutManager;
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
+
+    private RecyclerView rcNavigator;
+    private RecyclerViewAdapterCategory rvc;
+
     private List<Object> mAdapterData;
+    private List<Object> categories;
     private Handler handler;
     private final int size = 8;
     private int from;
@@ -47,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAdapterData = new ArrayList<>();
+        categories = new ArrayList<>();
         handler = new Handler();
         app = (ElasticSearchApp) this.getApplication();
         api = app.getAPI();
@@ -119,10 +127,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.Open,R.string.Close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
+
         navView = (NavigationView)findViewById(R.id.navigation_view);
         navView.setNavigationItemSelectedListener(this);
         View parentView = navView.getHeaderView(0);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        linearLayoutManager = new LinearLayoutManager(MainActivity.this);
+        rcNavigator = (RecyclerView) findViewById(R.id.RecyclerView_NavMenu);
+        rcNavigator.setLayoutManager(linearLayoutManager);
+
+        //System.out.println("--------------------------------------");
+        //System.out.println("Fent call de categories");
+        Call<Categories> call = api.categories();
+        call.enqueue(new Callback<Categories>() {
+            @Override
+            public void onResponse(Call<Categories> call, Response<Categories> response) {
+                if(response.isSuccessful()){
+                    //System.out.println("Response rebuda de categories");
+                   // System.out.println("Body:"+response.body().hits.hits);
+                    for(Categoria p : response.body().hits.hits){
+                        //System.out.println("Categoria _source: "+p._source.nom);
+                        categories.add(p._source);
+                    }
+                    //System.out.println("Categories size: "+categories.size());
+                    rvc = new RecyclerViewAdapterCategory(MainActivity.this, categories,rcNavigator);
+                    rcNavigator.setAdapter(rvc);
+                }
+                else{
+                    System.out.println("No s'ha pogut obtenir el llistar de categories principals");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Categories> call, Throwable t) {
+                System.out.println("Failure");
+                System.out.println(t);
+            }
+        });
+
+
+
         //SharedPreferences mSettings = getSharedPreferences(APP_SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
     }
@@ -132,14 +177,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent intent = null;
         int id = item.getItemId();
-        switch(id){
-            case R.id.drawer_home:
-                Toast toast = Toast.makeText(MainActivity.this, "Ja et trobes a Inici", Toast.LENGTH_SHORT);
-                toast.show();
-                break;
-            case R.id.drawer_sortir:
-
-        }
         return true;
     }
 }
