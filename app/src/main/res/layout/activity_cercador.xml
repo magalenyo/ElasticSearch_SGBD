@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="elasticsearch.elasticsearch_sgbd.Cercador"
+        android:padding="16dp"
+>
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Nom a buscar"
+              android:layout_marginBottom="4dp"
+              android:textSize="18sp"
+    />
+
+    <EditText android:layout_width="match_parent"
+              android:layout_height="32dp"
+              android:background="#d4d4d4"
+              android:id="@+id/cercador_text"
+    />
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="4dp"
+              android:layout_marginBottom="4dp"
+              android:text="Stock a partir de: "
+              android:textSize="18sp"
+    />
+
+    <EditText android:layout_width="match_parent"
+              android:layout_height="32dp"
+              android:background="#d4d4d4"
+              android:id="@+id/cercador_stock"
+              android:hint="0 o en blanc busca qualsevol"
+              android:inputType="number"
+    />
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="4dp"
+              android:layout_marginBottom="4dp"
+              android:text="Condició de l'article"
+              android:textSize="18sp"
+    />
+
+    <Spinner android:text=""
+             android:id="@+id/cercador_spinner"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+    />
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="4dp"
+              android:layout_marginBottom="4dp"
+              android:text="Preu mínim"
+              android:textSize="18sp"
+    />
+
+    <EditText android:layout_width="match_parent"
+              android:layout_height="32dp"
+              android:background="#d4d4d4"
+              android:id="@+id/cercador_preu"
+              android:hint="0 o en blanc busca qualsevol"
+              android:inputType="number"
+    />
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="4dp"
+              android:layout_marginBottom="4dp"
+              android:text="Ordenar per preu:"
+              android:textSize="18sp"
+    />
+
+    <Spinner android:text=""
+             android:id="@+id/cercador_spinner_preu"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+    />
+
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cercador_boto"
+            android:text="Cercar"
+            android:layout_gravity="center"
+            android:layout_marginTop="18px"
+    />
+
+</LinearLayout>

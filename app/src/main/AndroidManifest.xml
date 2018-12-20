@@ -25,6 +25,8 @@
         </activity>
         <activity android:name=".Activity_SubCategories">
         </activity>
+        <activity android:name=".Cercador">
+        </activity>
     </application>
 
 </manifest>

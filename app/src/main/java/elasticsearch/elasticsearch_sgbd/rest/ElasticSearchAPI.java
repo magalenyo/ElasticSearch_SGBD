@@ -5,6 +5,7 @@ import retrofit2.http.*;
 import elasticsearch.elasticsearch_sgbd.entity.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ElasticSearchAPI {
 
@@ -24,4 +25,10 @@ public interface ElasticSearchAPI {
 
     @GET("/categories/categoria/{id}")
     Call<Categoria> subcategories(@Path("id") String id);
+
+    @GET("/condicions/condicio/_search")
+    Call<Condicions> getCondicions();
+
+    @GET("/productes/producte/_search")
+    Call<Productes> getQueriedProducte(@QueryMap Map<String, String> opcions);
 }

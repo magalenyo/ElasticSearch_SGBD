@@ -60,6 +60,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         api = app.getAPI();
         from = 0;
 
+
+        Intent intent = new Intent(this, Cercador.class);
+        startActivity(intent);
+
         setNavigationDrawer();
         updateAdapterData();
         setHomeScroll();
