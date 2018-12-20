@@ -31,4 +31,7 @@ public interface ElasticSearchAPI {
 
     @GET("/productes/producte/_search")
     Call<Productes> getQueriedProducte(@QueryMap Map<String, String> opcions);
+    
+    @GET("/productes/producte/_search")
+    Call<Productes> productesCategoria(@Query("from") int f, @Query("size") int s, @QueryMap Map<String, String> filters);
 }
