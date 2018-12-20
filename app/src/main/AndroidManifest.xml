@@ -27,6 +27,8 @@
         </activity>
         <activity android:name=".Cercador">
         </activity>
+        <activity android:name=".Productes_Categoria">
+        </activity>
     </application>
 
 </manifest>
