@@ -8,14 +8,13 @@ import android.widget.TextView;
 public class RecyclerViewHoldersCategory extends RecyclerView.ViewHolder{
     public TextView nomCat;
     protected Context context;
-    public String nom;
+    public String nomCategoria;
 
 
     public RecyclerViewHoldersCategory(View itemView) {
         super(itemView);
         context = itemView.getContext();
         nomCat = (TextView) itemView.findViewById(R.id.categoria_nom);
-        nom = nomCat.getText().toString();
-
+        nomCategoria = nomCat.getText().toString();
     }
 }

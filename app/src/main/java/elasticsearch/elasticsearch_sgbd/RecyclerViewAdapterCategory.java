@@ -36,6 +36,7 @@ public class RecyclerViewAdapterCategory extends RecyclerView.Adapter<RecyclerVi
         CategoriaDades item = (CategoriaDades) llistaCategories.get(position);
         RecyclerViewHoldersHomeCategory rvdc = (RecyclerViewHoldersHomeCategory) holder;
         rvdc.nomCat.setText(item.nom);
+        rvdc.nomCategoria = item.nom;
     }
 
     @Override

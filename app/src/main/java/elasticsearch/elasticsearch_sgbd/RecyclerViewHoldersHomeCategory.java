@@ -14,7 +14,8 @@ public class RecyclerViewHoldersHomeCategory extends RecyclerViewHoldersCategory
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(context, Activity_SubCategories.class);
-        intent.putExtra("nom", nom);
+        System.out.println("OnCliCK: "+nomCategoria);
+        intent.putExtra("nom", nomCategoria);
         context.startActivity(intent);
     }
 }
