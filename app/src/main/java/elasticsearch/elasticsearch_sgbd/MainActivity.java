@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import elasticsearch.elasticsearch_sgbd.entity.Categoria;
 import elasticsearch.elasticsearch_sgbd.entity.Categories;
@@ -61,8 +62,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         from = 0;
 
 
-        Intent intent = new Intent(this, Cercador.class);
-        startActivity(intent);
+        TextView text = (TextView)findViewById(R.id.main_linkCercador);
+        text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), Cercador.class);
+                startActivity(intent);
+            }
+        });
 
         setNavigationDrawer();
         updateAdapterData();

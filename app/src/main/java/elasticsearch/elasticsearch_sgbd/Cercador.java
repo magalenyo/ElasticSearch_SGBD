@@ -111,16 +111,34 @@ public class Cercador extends AppCompatActivity {
 
     private void obtenirDades() {
         condicioAConsultar = spinner1.getSelectedItem().toString();
+        EditText nom = (EditText)findViewById(R.id.cercador_text);
         EditText stock = (EditText)findViewById(R.id.cercador_stock);
         EditText preu = (EditText)findViewById(R.id.cercador_preu);
         //Map<String, String> opcions = new HashMap<String, String>();
-        //params.put("preu", "gte : 10");
+        //opcions.put("preu", "gte : 10");
 
         //opcions.put("sort", "preu:asc");
 
-        opcions.put("sort","preu:"+spinner2.getSelectedItem().toString());
+        //opcions.put("q", "nom : "+nom.getText().toString());
+        //String aux = "nom : " + nom.getText().toString();
+        opcions.put("default_operator","AND");  //tots els + seran ands en comptes de or per defecte
 
-        //if()
+
+
+        //opcions.put("filter : range","disponibilidad: { gte : 30 }");
+
+
+        opcions.put("q", "nom:"+nom.getText().toString());          //nom a buscar
+        //opcions.put("range","preu:{\"gte\":30");
+
+        //opcions.put("disponibilitat","gte : "+stock.getText().toString());
+        //opcions.put("disponibilitat","gte : "+stock.getText().toString());
+        //if(!stock.getText().toString().equals("") && stock.getText().toString() != "0") opcions.put("disponibilitat","gte : "+stock.getText().toString());
+        //if(preu.getText().toString() != "" && preu.getText().toString() != "0") opcions.put("preu","gte:"+preu.getText().toString());
+        if(!condicioAConsultar.equals("")) opcions.put("q","condicions:"+condicioAConsultar);       //condicions
+
+
+        opcions.put("sort","preu:"+spinner2.getSelectedItem().toString());      //ordenat per preu
 
 
         Call<Productes> call = api.getQueriedProducte(opcions);
@@ -129,8 +147,8 @@ public class Cercador extends AppCompatActivity {
             public void onResponse(Call<Productes> call, Response<Productes> response) {
                 if(response.isSuccessful()){
                     System.out.println("Success");
-                    //System.out.println(response);
-                    System.out.println(response.body().hits.hits.get(0)._source.preu);
+                    System.out.println(response);
+                    //System.out.println(response.body().hits.hits.get(0)._source.preu);
 
                 }
                 else{
